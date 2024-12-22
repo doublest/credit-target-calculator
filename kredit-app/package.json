@@ -1,0 +1,14 @@
+{
+  "name": "kredit-app",
+  "version": "1.0.0",
+  "description": "Kredit-Zielwertberechnung Anwendung mit Express und Node.js",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Ihr Name",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
