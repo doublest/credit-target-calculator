@@ -2,6 +2,7 @@ name: CI
 
 on:
   push:
+  pull_request:
 
 jobs:
   build:
@@ -24,8 +25,15 @@ jobs:
         uses: github/codeql-action/init@v2
         with:
           languages: javascript
+      - name: SAST - Autobuild
+        uses: github/codeql-action/autobuild@v2
+        with:
+          # ensure CodeQL builds in the kredit-app subdirectory
+          command: npm install --prefix kredit-app
       - name: SAST - Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
+        with:
+          category: '/language:javascript'
       - name: Generate unit tests (placeholder)
         run: |
           echo "Generating unit tests for new code..."
