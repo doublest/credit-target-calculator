@@ -79,6 +79,11 @@ jobs:
       - name: Install dependencies
         working-directory: kredit-app
         run: npm install
+      - name: Patch mime module for case-sensitive require
+        working-directory: kredit-app
+        run: |
+          # Some mime versions require('./Mime') but file is lowercase on case-sensitive FS
+          sed -i 's/require(\.\/Mime)/require(\.\/mime)/g' node_modules/mime/index.js || true
       - name: Run tests
         working-directory: kredit-app
         run: npm test -- --coverage
