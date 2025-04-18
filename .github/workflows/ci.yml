@@ -40,6 +40,20 @@ jobs:
         uses: github/codeql-action/analyze@v3
         with:
           category: '/language:javascript'
+
+      # Produce an HTML report alongside the SARIF upload
+      - name: Generate CodeQL HTML report
+        uses: github/codeql-action/analyze@v3
+        with:
+          format: html
+          output: codeql-report.html
+          upload: false
+
+      - name: Upload CodeQL HTML report
+        uses: actions/upload-artifact@v3
+        with:
+          name: codeql-html-report
+          path: codeql-report.html
       - name: Generate unit tests (placeholder)
         run: |
           echo "Generating unit tests for new code..."
