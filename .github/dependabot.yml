@@ -1,0 +1,19 @@
+version: 2
+updates:
+  # Run daily to keep npm dependencies up to date
+  - package-ecosystem: "npm"
+    directory: "/kredit-app"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 5
+    # Optionally ignore build or test dependencies if desired
+    # ignore:
+    #   - dependency-name: "*"
+    #     update-types: ["version-update:semver-major"]
+
+  # Keep GitHub Actions workflows up to date
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 5

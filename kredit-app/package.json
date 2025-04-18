@@ -7,19 +7,19 @@
     "start": "node server.js",
     "mutation": "stryker run",
     "test": "jest",
-    "update-deps": "ncu -u && npm install"
+    "update-deps": "npm install && npx npm-check-updates -u && npm install"
   },
   "author": "Ihr Name",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^5.1.0"
   },
   "devDependencies": {
-    "@stryker-mutator/core": "^6.0.0",
-    "jest": "^29.0.0",
-    "jest-environment-jsdom": "^29.0.0",
-    "supertest": "^6.0.0",
+    "@stryker-mutator/core": "^8.7.1",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "supertest": "^7.1.0",
     "jest-html-reporters": "^3.1.7",
-    "npm-check-updates": "^16.0.0"
+    "npm-check-updates": "^17.1.18"
   }
 }
