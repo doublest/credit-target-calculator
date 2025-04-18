@@ -1,5 +1,10 @@
 name: CI
 
+# Grant GITHUB_TOKEN read/write access to repo contents and packages
+permissions:
+  contents: write
+  packages: write
+
 on:
   push:
   pull_request:
