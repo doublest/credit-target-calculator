@@ -27,16 +27,16 @@ jobs:
       - name: Install conventional-changelog CLI
         run: npm install -g conventional-changelog-cli
       - name: SAST - Initialize CodeQL
-        uses: github/codeql-action/init@v2
+        uses: github/codeql-action/init@v3
         with:
           languages: javascript
       - name: SAST - Autobuild
-        uses: github/codeql-action/autobuild@v2
+        uses: github/codeql-action/autobuild@v3
         with:
           # ensure CodeQL builds in the kredit-app subdirectory
           command: npm install --prefix kredit-app
       - name: SAST - Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v2
+        uses: github/codeql-action/analyze@v3
         with:
           category: '/language:javascript'
       - name: Generate unit tests (placeholder)
