@@ -1,0 +1,21 @@
+{
+  "name": "credit-target-calculator",
+  "version": "1.0.0",
+  "description": "> A user-friendly web app to plan and track your loan repayments effortlessly! 💰📅",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "update-deps": "cd kredit-app && npm run update-deps"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doublest/credit-target-calculator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/doublest/credit-target-calculator/issues"
+  },
+  "homepage": "https://github.com/doublest/credit-target-calculator#readme"
+}
