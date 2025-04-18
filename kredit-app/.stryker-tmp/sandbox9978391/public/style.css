@@ -1,0 +1,169 @@
+/* Grundlegende Stile */
+body {
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+/* Header-Stile */
+header {
+    background-color: #004080;
+    /* Dunkleres Blau für besseren Kontrast */
+    color: white;
+    padding: 15px 20px;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+}
+
+.header-icon {
+    font-size: 2.5em;
+    margin-right: 15px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+/* Main-Container */
+main {
+    padding: 20px;
+}
+
+/* Grid-Container */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Grid-Stile */
+.grid {
+    background-color: #F9F9F9;
+    border: 1px solid #CCCCCC;
+    border-radius: 12px;
+    padding: 30px;
+    width: 100%;
+    max-width: 450px;
+    box-sizing: border-box;
+    /* Wichtig für korrektes Padding */
+}
+
+.grid h2 {
+    margin-top: 0;
+    color: #004080;
+    font-size: 1.75em;
+    display: flex;
+    align-items: center;
+}
+
+.grid h2 i {
+    margin-right: 10px;
+}
+
+/* Formular-Stile */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333333;
+    font-size: 1em;
+}
+
+input[type="number"],
+input[type="month"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #888888;
+    border-radius: 6px;
+    font-size: 1em;
+    box-sizing: border-box;
+    /* Wichtig für korrektes Padding */
+}
+
+input[type="number"]:focus,
+input[type="month"]:focus {
+    border-color: #004080;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 64, 128, 0.3);
+}
+
+/* Fokuszustände für Tastaturzugänglichkeit */
+input:focus,
+button:focus {
+    outline: 2px solid #004080;
+    outline-offset: 2px;
+}
+
+/* Button-Stile */
+.btn {
+    background-color: #004080;
+    color: white;
+    border: none;
+    padding: 15px;
+    width: 100%;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn:hover,
+.btn:focus {
+    background-color: #003366;
+}
+
+/* Ergebnis-Stile */
+.ergebnis {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #006600;
+    background-color: #E6FFE6;
+    padding: 15px;
+    border-radius: 6px;
+    font-size: 1em;
+}
+
+/* Fehlernachrichten-Stile */
+.error-message {
+    color: #CC0000;
+    font-size: 0.9em;
+    margin-top: 5px;
+    display: none;
+}
+
+/* Footer-Stile */
+footer {
+    background-color: #004080;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Responsives Design */
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row;
+    }
+
+    .grid {
+        width: calc(50% - 20px);
+    }
+}

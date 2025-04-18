@@ -42,6 +42,14 @@ function berechneAbzahldatum() {
     document.getElementById('ergebnis1').innerText = 'Der Kredit wird voraussichtlich bis ' + endDatum.toLocaleDateString('de-DE', options) + ' abbezahlt sein.';
 }
 
+// Exportiere Funktionen für Tests
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    berechneAbzahldatum,
+    berechneMonatlicheRate
+  };
+}
+
 function berechneMonatlicheRate() {
     // Vorherige Fehlermeldungen zurücksetzen
     document.getElementById('zieldatumError').style.display = 'none';

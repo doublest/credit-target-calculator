@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kredit-Zielwertberechnung</title>
+    <!-- Einbindung der Schriftart "Roboto" -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+    <!-- Einbindung von Font Awesome für Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Einbindung der CSS-Datei -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <!-- Piktogramm oben links -->
+            <i class="fas fa-calculator header-icon"></i>
+            <h1>Kredit-Zielwertberechnung</h1>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <!-- Grid 1: Zielabzahldatum bei gegebener monatlicher Rate -->
+            <div class="grid">
+                <h2><i class="fas fa-calendar-alt"></i> Abzahldatum berechnen</h2>
+                <div class="form-group">
+                    <label for="kreditbetrag1">Kreditbetrag (€):</label>
+                    <input type="number" id="kreditbetrag1" value="623000">
+                </div>
+                <div class="form-group">
+                    <label for="restschuld1">Aktuelle Restschuld (€):</label>
+                    <input type="number" id="restschuld1" value="411575">
+                </div>
+                <div class="form-group">
+                    <label for="monatlicheRate1">Monatliche Rate (€):</label>
+                    <input type="number" id="monatlicheRate1" value="1425">
+                </div>
+                <button class="btn" onclick="berechneAbzahldatum()">Berechnen</button>
+                <p id="ergebnis1" class="ergebnis"></p>
+            </div>
+
+            <!-- Grid 2: Monatliche Rate bei gegebenem Zieldatum -->
+            <div class="grid">
+                <h2><i class="fas fa-euro-sign"></i> Monatliche Rate berechnen</h2>
+                <div class="form-group">
+                    <label for="kreditbetrag2">Kreditbetrag (€):</label>
+                    <input type="number" id="kreditbetrag2" value="623000">
+                </div>
+                <div class="form-group">
+                    <label for="restschuld2">Aktuelle Restschuld (€):</label>
+                    <input type="number" id="restschuld2" value="411575">
+                </div>
+                <div class="form-group">
+                    <label for="zieldatum">Zieldatum (JJJJ-MM):</label>
+                    <input type="month" id="zieldatum" required
+                        title="Bitte wählen Sie das Zieldatum im Format JJJJ-MM">
+                    <small id="zieldatumError" class="error-message"></small>
+                </div>
+                <button class="btn" onclick="berechneMonatlicheRate()">Berechnen</button>
+                <p id="ergebnis2" class="ergebnis"></p>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2023 Ihre Finanz-App</p>
+    </footer>
+    <!-- Einbindung der JavaScript-Datei -->
+    <script src="script.js"></script>
+</body>
+
+</html>
