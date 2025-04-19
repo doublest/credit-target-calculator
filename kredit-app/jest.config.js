@@ -15,8 +15,6 @@ module.exports = {
   ],
   // Disable Babel transformations
   transform: {},
-  // Map 'mime' module to 'mime-types' to avoid case-sensitivity issue
-  moduleNameMapper: {
-    '^mime$': '<rootDir>/node_modules/mime-types/index.js'
-  }
+  // Automatically mock the 'mime' module to satisfy superagent requirements
+  setupFiles: ['<rootDir>/jest.setup.js'],
 };
