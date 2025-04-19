@@ -14,5 +14,9 @@ module.exports = {
     }]
   ],
   // Disable Babel transformations
-  transform: {}
+  transform: {},
+  // Map 'mime' module to 'mime-types' to avoid case-sensitivity issue
+  moduleNameMapper: {
+    '^mime$': '<rootDir>/node_modules/mime-types/index.js'
+  }
 };
