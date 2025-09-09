@@ -47,4 +47,33 @@ describe('Frontend validation edge cases', () => {
     const txt = el.textContent || el.innerText || '';
     expect(txt).toMatch(/in der Zukunft/);
   });
+
+  test('berechneMonatlicheRate rejects same month (>= 0 months check)', () => {
+    const now = new Date();
+    const yyyy = now.getFullYear();
+    const mm = String(now.getMonth() + 1).padStart(2, '0');
+    document.getElementById('zieldatum').value = `${yyyy}-${mm}`;
+    script.berechneMonatlicheRate();
+    const el = document.getElementById('zieldatumError');
+    const txt = el.textContent || el.innerText || '';
+    expect(txt).toMatch(/mindestens einen Monat/);
+  });
+
+  test('onload sets min attribute (YYYY-MM)', () => {
+    expect(typeof window.onload).toBe('function');
+    window.onload();
+    const min = document.getElementById('zieldatum').getAttribute('min');
+    expect(min).toMatch(/^\d{4}-(0[1-9]|1[0-2])$/);
+  });
+
+  test('berechneMonatlicheRate handles invalid month format (13)', () => {
+    document.getElementById('zieldatum').value = '2025-13';
+    script.berechneMonatlicheRate();
+    const el = document.getElementById('zieldatumError');
+    const txt = el.textContent || el.innerText || '';
+    expect(txt).toMatch(/gültiges Zieldatum/);
+  });
+
+  // Valid computation path is exercised indirectly via other tests;
+  // here we focus on validation branches to ensure robustness.
 });

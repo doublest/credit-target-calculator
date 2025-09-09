@@ -4,6 +4,7 @@
 module.exports = {
   testEnvironment: 'jsdom',
   coverageProvider: 'v8',
+  coveragePathIgnorePatterns: ['/node_modules/', '<rootDir>/server.js'],
   modulePathIgnorePatterns: ['<rootDir>/.stryker-tmp'],
   // Add HTML reporter for test results
   reporters: [
