@@ -1,7 +1,7 @@
 # Dockerfile
 
 # Basis-Image
-FROM node:14-alpine
+FROM node:20-alpine
 
 # Arbeitsverzeichnis im Container
 WORKDIR /app

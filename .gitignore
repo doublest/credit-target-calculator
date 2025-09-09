@@ -1,1 +1,17 @@
 .env
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# OS/Jest/Reports
+.DS_Store
+coverage/
+html-report/
+.stryker-tmp/
+
+# Env and editor
+.env.local
+.env.*.local
+.vscode/
+.idea/

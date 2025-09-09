@@ -18,4 +18,8 @@
     "url": "https://github.com/doublest/credit-target-calculator/issues"
   },
   "homepage": "https://github.com/doublest/credit-target-calculator#readme"
+  ,
+  "engines": {
+    "node": ">=20"
+  }
 }
