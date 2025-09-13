@@ -76,13 +76,39 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Build and push image (all runs)
+      - name: Build image (no push, load locally)
         uses: docker/build-push-action@v5
         with:
           context: kredit-app
           file: kredit-app/Dockerfile
-          push: true
+          push: false
+          load: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: Select image ref for scanning
+        id: imgref
+        shell: bash
+        run: |
+          echo "IMAGE_REF=$(echo "${{ steps.meta.outputs.tags }}" | head -n1)" >> $GITHUB_ENV
+          echo "ref=$(echo "${{ steps.meta.outputs.tags }}" | head -n1)" >> $GITHUB_OUTPUT
+
+      - name: Trivy vulnerability scan
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          image-ref: ${{ steps.imgref.outputs.ref }}
+          format: 'table'
+          severity: 'CRITICAL,HIGH'
+          ignore-unfixed: true
+          exit-code: '1'
+          vuln-type: 'os,library'
+
+      - name: Push all image tags
+        shell: bash
+        run: |
+          while IFS= read -r tag; do
+            echo "Pushing $tag"
+            docker push "$tag"
+          done <<< "${{ steps.meta.outputs.tags }}"
