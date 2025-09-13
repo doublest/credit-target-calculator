@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Test and reports
+coverage/
+html-report/
+.stryker-tmp/
+
+# VCS and CI
+.git/
+.github/
+
+# OS files
+.DS_Store
+
+# Root-level project files not needed in image when using kredit-app/ context
+../
