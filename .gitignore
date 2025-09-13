@@ -10,6 +10,10 @@ coverage/
 html-report/
 .stryker-tmp/
 
+# Local caches and Spec Kit
+.cache/
+test/
+
 # Env and editor
 .env.local
 .env.*.local
