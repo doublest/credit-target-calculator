@@ -37,27 +37,27 @@ main {
     padding: 20px;
 }
 
-/* Grid-Container */
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+/* Main-Grid: drei gleich breite Spalten (Abzahldatum | Monatliche Rate | Sondertilgung) */
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
+    max-width: 940px;
+    margin: 20px auto 0;
+    box-sizing: border-box;
 }
 
-/* Grid-Stile */
-.grid {
+/* Grid-Stile (Abzahldatum + Monatliche Rate) */
+.main-grid .grid {
     background-color: #F9F9F9;
     border: 1px solid #CCCCCC;
     border-radius: 12px;
     padding: 30px;
-    width: 100%;
-    max-width: 450px;
+    min-width: 0;
     box-sizing: border-box;
-    /* Wichtig für korrektes Padding */
 }
 
-.grid h2 {
+.main-grid .grid h2 {
     margin-top: 0;
     color: #004080;
     font-size: 1.75em;
@@ -65,7 +65,7 @@ main {
     align-items: center;
 }
 
-.grid h2 i {
+.main-grid .grid h2 i {
     margin-right: 10px;
 }
 
@@ -92,6 +92,12 @@ input[type="month"] {
     font-size: 1em;
     box-sizing: border-box;
     /* Wichtig für korrektes Padding */
+}
+
+input[readonly] {
+    background-color: #F0F0F0;
+    color: #333333;
+    cursor: default;
 }
 
 input[type="number"]:focus,
@@ -183,6 +189,139 @@ button:focus {
     display: none;
 }
 
+/* Sondertilgungen-Stile (dritte Spalte im main-grid) */
+.sondertilgungen-section {
+    padding: 20px 30px;
+    background-color: #F9F9F9;
+    border: 1px solid #CCCCCC;
+    border-radius: 12px;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.sondertilgungen-section h2 {
+    margin-top: 0;
+    color: #004080;
+    font-size: 1.75em;
+    display: flex;
+    align-items: center;
+}
+
+.sondertilgungen-section h2 i {
+    margin-right: 10px;
+}
+
+#sondertilgungenTabelle {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+
+#sondertilgungenTabelle th {
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 2px solid #004080;
+    color: #004080;
+    font-size: 0.95em;
+}
+
+#sondertilgungenTabelle td {
+    padding: 6px 10px;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+#sondertilgungenTabelle tr:nth-child(even) td {
+    background-color: #F0F5FA;
+}
+
+#sondertilgungenTabelle .sonder-datum,
+#sondertilgungenTabelle .sonder-betrag {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #888888;
+    border-radius: 6px;
+    font-size: 0.95em;
+    box-sizing: border-box;
+}
+
+.btn-add {
+    max-width: 300px;
+}
+
+.btn-remove {
+    background: none;
+    border: none;
+    color: #CC0000;
+    cursor: pointer;
+    font-size: 1.1em;
+    padding: 6px 10px;
+    border-radius: 4px;
+}
+
+.btn-remove:hover {
+    background-color: #FFE0E0;
+}
+
+/* Zeitreihe-Stile */
+.zeitreihe-section {
+    margin-top: 20px;
+    padding: 20px 30px;
+    background-color: #F9F9F9;
+    border: 1px solid #CCCCCC;
+    border-radius: 12px;
+    max-width: 940px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+.zeitreihe-section h2 {
+    margin-top: 0;
+    color: #004080;
+    font-size: 1.75em;
+    display: flex;
+    align-items: center;
+}
+
+.zeitreihe-section h2 i {
+    margin-right: 10px;
+}
+
+#timeline {
+    min-height: 120px;
+    max-height: 180px;
+    border: 1px solid #CCCCCC;
+    border-radius: 6px;
+    background-color: #FFFFFF;
+    overflow: visible;
+}
+
+.timeline-start .vis-item-content {
+    color: #004080;
+}
+
+.timeline-heute .vis-item-content {
+    color: #006600;
+}
+
+.timeline-ende .vis-item-content {
+    color: #CC6600;
+}
+
+.timeline-sonder .vis-item-content {
+    color: #6A0DAD;
+}
+
+.vis-item .vis-item-content {
+    font-size: 0.8em;
+    padding: 3px 5px;
+}
+
+.vis-item.vis-range.timeline-range {
+    background-color: rgba(0, 64, 128, 0.15);
+    border-color: #004080;
+}
+
 /* Footer-Stile */
 footer {
     background-color: #004080;
@@ -197,12 +336,8 @@ footer p {
 }
 
 /* Responsives Design */
-@media (min-width: 768px) {
-    .container {
-        flex-direction: row;
-    }
-
-    .grid {
-        width: calc(50% - 20px);
+@media (max-width: 767px) {
+    .main-grid {
+        grid-template-columns: 1fr;
     }
 }
