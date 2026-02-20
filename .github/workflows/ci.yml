@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   test:
-    name: Unit Tests (Node 16)
+    name: Unit Tests (Node 20)
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -25,7 +25,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '16'
+          node-version: '20'
           cache: 'npm'
           cache-dependency-path: |
             kredit-app/package-lock.json

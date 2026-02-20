@@ -11,12 +11,20 @@ describe('Frontend validation edge cases', () => {
       <input id="restschuld1" value="50000" />
       <input id="monatlicheRate1" value="0" />
       <p id="ergebnis1"></p>
+      <div id="fortschritt1" class="progress-container" style="display:none;">
+        <div class="progress-bar"><div id="fortschrittFill1" class="progress-fill"></div></div>
+        <span id="fortschrittText1" class="progress-text"></span>
+      </div>
 
       <input id="kreditbetrag2" value="100000" />
       <input id="restschuld2" value="60000" />
       <input id="zieldatum" />
       <small id="zieldatumError" class="error-message"></small>
-      <p id="ergebnis2"></p>`;
+      <p id="ergebnis2"></p>
+      <div id="fortschritt2" class="progress-container" style="display:none;">
+        <div class="progress-bar"><div id="fortschrittFill2" class="progress-fill"></div></div>
+        <span id="fortschrittText2" class="progress-text"></span>
+      </div>`;
     // fresh-require the script for each test
     jest.resetModules();
     script = require('../public/script.js');
