@@ -5,7 +5,10 @@
 ## 🚀 Features
 - ✅ Calculate the payoff date based on your current balance and monthly rate
 - ✅ Determine the required monthly rate to reach your target payoff date
-- 📊 Interactive and intuitive interface
+- 📊 **Zeitreihen-Chart**: Gestapelter Balken-Chart mit ApexCharts – Monatliche Tilgung (blau) und Sondertilgungen (gelb) pro Jahr, inkl. Markierungen für Tilgungsbeginn, Heute und Abzahldatum
+- 📅 Sondertilgungen mit Datum (JJJJ-MM-DD) und Betrag
+- 📊 Tilgungsfortschritt mit Fortschrittsbalken
+- 🎨 Responsives Layout mit drei Spalten
 - 🌐 Built with Node.js, Express, HTML, CSS, and JavaScript
 
 ## 🖥️ Getting Started
@@ -35,13 +38,22 @@ Follow these steps to run the app locally:
 ## 💡 Usage
 1. **Calculate Payoff Date** 🗓️  
    - Enter your original loan amount and current remaining balance.  
-   - Input your planned monthly payment.  
+   - Input your planned monthly payment (default from config).
    - Click **Berechnen** to see the expected payoff month and year.
 
-2. **Calculate Monthly Payment** 💸  
-   - Enter your original loan amount and current remaining balance.  
-   - Choose your desired payoff date.  
+2. **Calculate Monthly Payment** 💸
+   - Enter your original loan amount and current remaining balance.
+   - Choose your desired payoff date (format: JJJJ-MM).  
    - Click **Berechnen** to find out how much you need to pay each month.
+
+3. **Zeitreihe (Timeline)** 📊  
+   - The stacked bar chart shows annual aggregated monthly repayments (blue) and special payments (yellow).  
+   - Vertical lines mark: Tilgungsbeginn, Heute (with date), and Abzahldatum.  
+   - Historical values use config data; future months are projected from the current monthly rate.
+
+4. **Sondertilgungen (Special Payments)** 💰  
+   - Add special payments with date (JJJJ-MM-DD) and amount.  
+   - They are included in the payoff calculation and displayed in the timeline chart.
 
 ## ☁️ Deployment with Helm
 To deploy the application on Kubernetes using Helm:

@@ -10,32 +10,38 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Einbindung der CSS-Datei -->
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
     <header>
         <div class="header-content">
-            <!-- Piktogramm oben links -->
             <i class="fas fa-calculator header-icon"></i>
-            <h1>Kredit-Zielwertberechnung</h1>
+            <h1 class="header-title">Kredit-Zielwertberechnung</h1>
         </div>
     </header>
     <main>
-        <div class="container">
+        <section class="zeitreihe-section">
+            <h2><span class="icon-first-word"><i class="fas fa-chart-line"></i> Zeitreihe</span> der Tilgung</h2>
+            <div id="timeline"></div>
+        </section>
+
+        <div class="main-grid">
             <!-- Grid 1: Zielabzahldatum bei gegebener monatlicher Rate -->
             <div class="grid">
-                <h2><i class="fas fa-calendar-alt"></i> Abzahldatum berechnen</h2>
+                <h2><span class="icon-first-word"><i class="fas fa-calendar-alt"></i> Abzahldatum</span> berechnen</h2>
                 <div class="form-group">
                     <label for="kreditbetrag1">Kreditbetrag (€):</label>
-                    <input type="text" id="kreditbetrag1" value="250.000,00 €" inputmode="decimal" placeholder="z.B. 125.000,00 €">
+                    <input type="text" id="kreditbetrag1" value="457.000,00 €" inputmode="decimal" placeholder="z.B. 125.000,00 €">
                 </div>
                 <div class="form-group">
                     <label for="restschuld1">Aktuelle Restschuld (€):</label>
-                    <input type="text" id="restschuld1" value="180.000,00 €" inputmode="decimal" placeholder="z.B. 80.000,00 €">
+                    <input type="text" id="restschuld1" value="" readonly
+                        title="Wird automatisch berechnet aus Kreditbetrag, Rate und Tilgungsdauer">
                 </div>
                 <div class="form-group">
                     <label for="monatlicheRate1">Monatliche Rate (€):</label>
-                    <input type="text" id="monatlicheRate1" value="1.200,00 €" inputmode="decimal" placeholder="z.B. 1.500,00 €">
+                    <input type="text" id="monatlicheRate1" value="" inputmode="decimal" placeholder="z.B. 1.500,00 €">
                 </div>
                 <button class="btn" onclick="berechneAbzahldatum()">Berechnen</button>
                 <p id="ergebnis1" class="ergebnis"></p>
@@ -50,19 +56,22 @@
 
             <!-- Grid 2: Monatliche Rate bei gegebenem Zieldatum -->
             <div class="grid">
-                <h2><i class="fas fa-euro-sign"></i> Monatliche Rate berechnen</h2>
+                <h2><span class="icon-first-word"><i class="fas fa-euro-sign"></i> Monatliche</span> Rate berechnen</h2>
                 <div class="form-group">
                     <label for="kreditbetrag2">Kreditbetrag (€):</label>
-                    <input type="text" id="kreditbetrag2" value="250.000,00 €" inputmode="decimal" placeholder="z.B. 125.000,00 €">
+                    <input type="text" id="kreditbetrag2" value="457.000,00 €" inputmode="decimal" placeholder="z.B. 125.000,00 €">
                 </div>
                 <div class="form-group">
                     <label for="restschuld2">Aktuelle Restschuld (€):</label>
-                    <input type="text" id="restschuld2" value="180.000,00 €" inputmode="decimal" placeholder="z.B. 80.000,00 €">
+                    <input type="text" id="restschuld2" value="" readonly
+                        title="Wird automatisch berechnet aus Kreditbetrag, Rate und Tilgungsdauer">
                 </div>
                 <div class="form-group">
                     <label for="zieldatum">Zieldatum (JJJJ-MM):</label>
-                    <input type="month" id="zieldatum" required
-                        title="Bitte wählen Sie das Zieldatum im Format JJJJ-MM">
+                    <input type="text" id="zieldatum" required
+                        pattern="\d{4}-(0[1-9]|1[0-2])"
+                        placeholder="z.B. 2028-12"
+                        title="Bitte geben Sie das Zieldatum im Format JJJJ-MM ein (z.B. 2028-12)">
                     <small id="zieldatumError" class="error-message"></small>
                 </div>
                 <button class="btn" onclick="berechneMonatlicheRate()">Berechnen</button>
@@ -75,12 +84,27 @@
                     <span id="fortschrittText2" class="progress-text"></span>
                 </div>
             </div>
+
+            <section class="sondertilgungen-section">
+                <h2><span class="icon-first-word"><i class="fas fa-plus-circle"></i> Sondertilgungen</span></h2>
+                <table id="sondertilgungenTabelle">
+                    <thead>
+                        <tr><th>Datum</th><th>Betrag</th><th></th></tr>
+                    </thead>
+                    <tbody id="sondertilgungenBody"></tbody>
+                </table>
+                <button class="btn btn-add" onclick="addSondertilgung()">+ Sondertilgung hinzufuegen</button>
+                <p id="sondertilgungenSumme" class="progress-text"></p>
+            </section>
         </div>
     </main>
     <footer>
         <p>&copy; 2025 Kredit-Zielwertberechnung</p>
     </footer>
-    <!-- Einbindung der JavaScript-Datei -->
+    <!-- ApexCharts -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <!-- Config und App-Logik -->
+    <script src="config.js"></script>
     <script src="script.js"></script>
 </body>
 

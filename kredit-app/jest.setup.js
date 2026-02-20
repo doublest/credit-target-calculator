@@ -20,3 +20,6 @@ try {
 if (typeof global.alert === 'undefined') {
   global.alert = () => {};
 }
+
+// KREDIT_CONFIG global für Tests bereitstellen (echte config.js inkl. historischeBelastungen)
+global.KREDIT_CONFIG = require('./public/config.js');

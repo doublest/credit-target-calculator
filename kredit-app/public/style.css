@@ -20,16 +20,31 @@ header {
 .header-content {
     display: flex;
     align-items: center;
+    gap: 16px;
 }
 
 .header-icon {
     font-size: 2.5em;
-    margin-right: 15px;
+    flex-shrink: 0;
 }
 
-header h1 {
+.header-title {
     margin: 0;
     font-size: 2em;
+    font-weight: bold;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+}
+
+/* Piktogramm + erstes Wort bleiben zusammen, Abstand dazwischen */
+.icon-first-word {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.icon-first-word i {
+    margin-right: 10px;
 }
 
 /* Main-Container */
@@ -37,41 +52,42 @@ main {
     padding: 20px;
 }
 
-/* Grid-Container */
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+/* Main-Grid: drei gleich breite Spalten (Abzahldatum | Monatliche Rate | Sondertilgung) */
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
+    max-width: 1128px; /* 940 * 1.2 */
+    margin: 20px auto 0;
+    box-sizing: border-box;
 }
 
-/* Grid-Stile */
-.grid {
+/* Grid-Stile (Abzahldatum + Monatliche Rate) */
+.main-grid .grid {
     background-color: #F9F9F9;
     border: 1px solid #CCCCCC;
     border-radius: 12px;
-    padding: 30px;
-    width: 100%;
-    max-width: 450px;
+    padding: clamp(20px, 4vw, 30px);
+    min-width: 0;
     box-sizing: border-box;
-    /* Wichtig für korrektes Padding */
+    container-type: inline-size;
 }
 
-.grid h2 {
+.main-grid .grid h2 {
     margin-top: 0;
     color: #004080;
-    font-size: 1.75em;
+    font-size: clamp(1.1em, 4vw, 1.75em);
     display: flex;
     align-items: center;
-}
-
-.grid h2 i {
-    margin-right: 10px;
+    flex-wrap: wrap;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 /* Formular-Stile */
 .form-group {
     margin-bottom: 20px;
+    min-width: 0;
 }
 
 label {
@@ -79,19 +95,28 @@ label {
     font-weight: bold;
     margin-bottom: 8px;
     color: #333333;
-    font-size: 1em;
+    font-size: clamp(0.85em, 2.5vw, 1em);
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 input[type="number"],
 input[type="text"],
 input[type="month"] {
     width: 100%;
-    padding: 12px 15px;
+    min-width: 0;
+    max-width: 100%;
+    padding: clamp(8px, 2vw, 12px) clamp(10px, 2.5vw, 15px);
     border: 1px solid #888888;
     border-radius: 6px;
-    font-size: 1em;
+    font-size: clamp(0.85em, 2.5vw, 1em);
     box-sizing: border-box;
-    /* Wichtig für korrektes Padding */
+}
+
+input[readonly] {
+    background-color: #F0F0F0;
+    color: #333333;
+    cursor: default;
 }
 
 input[type="number"]:focus,
@@ -114,12 +139,15 @@ button:focus {
     background-color: #004080;
     color: white;
     border: none;
-    padding: 15px;
+    padding: clamp(10px, 2vw, 15px);
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
     border-radius: 6px;
-    font-size: 1em;
+    font-size: clamp(0.85em, 2.5vw, 1em);
     cursor: pointer;
     margin-top: 10px;
+    box-sizing: border-box;
 }
 
 .btn:hover,
@@ -133,9 +161,11 @@ button:focus {
     font-weight: bold;
     color: #006600;
     background-color: #E6FFE6;
-    padding: 15px;
+    padding: clamp(10px, 2vw, 15px);
     border-radius: 6px;
-    font-size: 1em;
+    font-size: clamp(0.85em, 2.5vw, 1em);
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 /* Fortschrittsbalken-Stile */
@@ -145,9 +175,10 @@ button:focus {
 
 .progress-label {
     font-weight: bold;
-    font-size: 0.95em;
+    font-size: clamp(0.8em, 2.5vw, 0.95em);
     color: #333333;
     margin-bottom: 6px;
+    overflow-wrap: break-word;
 }
 
 .progress-bar {
@@ -170,9 +201,11 @@ button:focus {
 .progress-text {
     display: block;
     margin-top: 6px;
-    font-size: 0.9em;
+    font-size: clamp(0.8em, 2.5vw, 0.9em);
     font-weight: bold;
     color: #004080;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 /* Fehlernachrichten-Stile */
@@ -181,6 +214,119 @@ button:focus {
     font-size: 0.9em;
     margin-top: 5px;
     display: none;
+}
+
+/* Sondertilgungen-Stile (dritte Spalte im main-grid) */
+.sondertilgungen-section {
+    padding: clamp(15px, 3vw, 20px) clamp(20px, 4vw, 30px);
+    background-color: #F9F9F9;
+    border: 1px solid #CCCCCC;
+    border-radius: 12px;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    container-type: inline-size;
+}
+
+.sondertilgungen-section h2 {
+    margin-top: 0;
+    color: #004080;
+    font-size: clamp(1.1em, 4vw, 1.75em);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+#sondertilgungenTabelle {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+    table-layout: fixed;
+}
+
+#sondertilgungenTabelle th {
+    text-align: left;
+    padding: clamp(6px, 1.5vw, 8px) clamp(8px, 2vw, 10px);
+    border-bottom: 2px solid #004080;
+    color: #004080;
+    font-size: clamp(0.8em, 2.5vw, 0.95em);
+    overflow-wrap: break-word;
+}
+
+#sondertilgungenTabelle td {
+    padding: clamp(4px, 1vw, 6px) clamp(8px, 2vw, 10px);
+    border-bottom: 1px solid #E0E0E0;
+    overflow: hidden;
+}
+
+#sondertilgungenTabelle tr:nth-child(even) td {
+    background-color: #F0F5FA;
+}
+
+#sondertilgungenTabelle .sonder-datum,
+#sondertilgungenTabelle .sonder-betrag {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    padding: clamp(6px, 1.5vw, 8px) clamp(8px, 2vw, 10px);
+    border: 1px solid #888888;
+    border-radius: 6px;
+    font-size: clamp(0.8em, 2.5vw, 0.95em);
+    box-sizing: border-box;
+}
+
+.btn-add {
+    max-width: min(300px, 100%);
+}
+
+.btn-remove {
+    background: none;
+    border: none;
+    color: #CC0000;
+    cursor: pointer;
+    font-size: 1.1em;
+    padding: 6px 10px;
+    border-radius: 4px;
+}
+
+.btn-remove:hover {
+    background-color: #FFE0E0;
+}
+
+/* Zeitreihe-Stile */
+.zeitreihe-section {
+    margin-top: 20px;
+    padding: clamp(15px, 3vw, 20px) clamp(20px, 4vw, 30px);
+    background-color: #F9F9F9;
+    border: 1px solid #CCCCCC;
+    border-radius: 12px;
+    max-width: 1128px; /* 940 * 1.2 */
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    container-type: inline-size;
+}
+
+.zeitreihe-section h2 {
+    margin-top: 0;
+    color: #004080;
+    font-size: clamp(1.1em, 4vw, 1.75em);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+/* Zeitreihen-Chart (ApexCharts) */
+#timeline {
+    min-height: 320px;
+    padding: 16px 20px;
+    border: 1px solid #CCCCCC;
+    border-radius: 6px;
+    background-color: #FFFFFF;
 }
 
 /* Footer-Stile */
@@ -197,12 +343,8 @@ footer p {
 }
 
 /* Responsives Design */
-@media (min-width: 768px) {
-    .container {
-        flex-direction: row;
-    }
-
-    .grid {
-        width: calc(50% - 20px);
+@media (max-width: 767px) {
+    .main-grid {
+        grid-template-columns: 1fr;
     }
 }
